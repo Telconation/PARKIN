@@ -38,21 +38,18 @@ const t = useTranslations(lang);
         </div>
       </div>
 
-      <!-- ✅ FIX 6: Card dengan iPhone image - explicit width/height mencegah CLS
-           loading="lazy" karena ini below-fold, bukan LCP
-           srcset dengan ukuran yang sesuai display size (306px desktop / 496px mobile) -->
       <div class="bg-surface-card rounded-3xl flex flex-col relative min-h-[320px] border border-surface-border shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group">
-         <img
-           src="/images/screenshots/iPhone-14.webp"
-           alt="Mobile View Aplikasi PARKIN di iPhone"
-           class="absolute bottom-0 right-0 w-3/4 translate-x-4 translate-y-4 opacity-90 transition-transform duration-700 group-hover:-translate-y-2 animate-[float_6s_ease-in-out_infinite]"
-           width="1080"
-           height="2280"
-           loading="lazy"
-           decoding="async"
-           srcset="/images/screenshots/iPhone-14.webp 1080w"
-           sizes="(max-width: 768px) 372px, 306px"
-         />
+    <img
+  src="/images/screenshots/iPhone-14-500w.webp"
+  alt="Mobile View Aplikasi PARKIN di iPhone"
+  class="absolute bottom-0 right-0 w-3/4 opacity-90 iphone-float"
+  width="500"
+  height="1054"
+  loading="lazy"
+  decoding="async"
+  srcset="/images/screenshots/iPhone-14-500w.webp 500w, /images/screenshots/iPhone-14.webp 1080w"
+  sizes="(max-width: 768px) 279px, 229px"
+/>
          <div class="relative z-10 p-10 h-full flex flex-col justify-start bg-gradient-to-b from-surface-card via-surface-card/90 to-transparent pointer-events-none">
              <div class="w-12 h-12 rounded-xl bg-surface-bg text-surface-text flex items-center justify-center mb-6 border border-surface-border transition-transform group-hover:scale-110">
                 <i class="fa-solid fa-mobile-screen-button"></i>
@@ -91,12 +88,41 @@ const t = useTranslations(lang);
         <div class="shrink-0 flex items-center justify-center relative w-full md:w-auto mt-8 md:mt-0">
             <div class="relative h-48 w-[280px] mx-auto select-none pointer-events-none">
                 <svg class="absolute inset-0 w-[280px] h-[192px]" viewBox="0 0 280 192" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
-                    <!-- ✅ FIX 7: Animasi flow-line menggunakan stroke-dashoffset yang didukung compositor
-                         dengan will-change: transform sebagai hint, bukan property non-composited langsung -->
-                    <path d="M 45 40 Q 92 40 116 68 T 140 96" stroke="var(--color-brand-primary)" stroke-width="2" fill="none" class="flow-line opacity-50"></path>
-                    <path d="M 235 40 Q 188 40 164 68 T 140 96" stroke="var(--color-brand-primary)" stroke-width="2" fill="none" class="flow-line opacity-50" style="animation-delay:-0.5s"></path>
-                    <path d="M 45 152 Q 92 152 116 124 T 140 96" stroke="var(--color-status-ok)" stroke-width="2" fill="none" class="flow-line opacity-50" style="animation-delay:-1s"></path>
-                    <path d="M 235 152 Q 188 152 164 124 T 140 96" stroke="var(--color-status-ok)" stroke-width="2" fill="none" class="flow-line opacity-50" style="animation-delay:-1.5s"></path>
+
+                    <path d="M 45 40 Q 92 40 116 68 T 140 96" stroke="var(--color-brand-primary)" stroke-width="2" fill="none" opacity="0.5"></path>
+                    <path d="M 235 40 Q 188 40 164 68 T 140 96" stroke="var(--color-brand-primary)" stroke-width="2" fill="none" opacity="0.5"></path>
+                    <path d="M 45 152 Q 92 152 116 124 T 140 96" stroke="var(--color-status-ok)" stroke-width="2" fill="none" opacity="0.5"></path>
+                    <path d="M 235 152 Q 188 152 164 124 T 140 96" stroke="var(--color-status-ok)" stroke-width="2" fill="none" opacity="0.5"></path>
+                    
+                    <!-- Titik-titik bergerak di atas path — menggunakan animateMotion yang GPU-composited -->
+                    <circle r="3" fill="var(--color-brand-primary)" opacity="0.8">
+                      <animateMotion dur="2s" repeatCount="indefinite" begin="0s">
+                        <mpath href="#path-tl"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="3" fill="var(--color-brand-primary)" opacity="0.8">
+                      <animateMotion dur="2s" repeatCount="indefinite" begin="-0.5s">
+                        <mpath href="#path-tr"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="3" fill="var(--color-status-ok)" opacity="0.8">
+                      <animateMotion dur="2s" repeatCount="indefinite" begin="-1s">
+                        <mpath href="#path-bl"/>
+                      </animateMotion>
+                    </circle>
+                    <circle r="3" fill="var(--color-status-ok)" opacity="0.8">
+                      <animateMotion dur="2s" repeatCount="indefinite" begin="-1.5s">
+                        <mpath href="#path-br"/>
+                      </animateMotion>
+                    </circle>
+                    
+                    <!-- Path definitions dengan id untuk animateMotion reference -->
+                    <defs>
+                      <path id="path-tl" d="M 45 40 Q 92 40 116 68 T 140 96"/>
+                      <path id="path-tr" d="M 235 40 Q 188 40 164 68 T 140 96"/>
+                      <path id="path-bl" d="M 45 152 Q 92 152 116 124 T 140 96"/>
+                      <path id="path-br" d="M 235 152 Q 188 152 164 124 T 140 96"/>
+                    </defs>
                 </svg>
 
                 <!-- Central Hub -->
@@ -126,22 +152,16 @@ const t = useTranslations(lang);
 </section>
 
 <style>
-  /* ✅ FIX 7: Animasi SVG flow menggunakan stroke-dashoffset
-     Catatan: stroke-dashoffset TIDAK bisa dijalankan di compositor GPU secara native.
-     Solusi terbaik: gunakan opacity + transform saja untuk animasi compositor-friendly.
-     Untuk tetap mempertahankan efek visual, kita gunakan opacity animation sebagai alternatif
-     yang 100% compositor-safe dan tidak menyebabkan CLS/paint. */
-  .flow-line {
-    stroke-dasharray: 8 8;
-    /* Gunakan animation shorthand yang menghindari stroke-dashoffset langsung */
-    animation: flowLineSafe 2s linear infinite;
+  .iphone-float {
+    transform: translateX(1rem) translateY(1rem);
+    animation: iphoneFloat 6s ease-in-out infinite;
+    will-change: transform; /* Hint ke browser untuk compositor optimization */
   }
 
-  @keyframes flowLineSafe {
-    /* Simulasi efek dash bergerak menggunakan opacity pulse yang smooth */
-    0%   { opacity: 0.2; stroke-dashoffset: 0; }
-    50%  { opacity: 0.6; }
-    100% { opacity: 0.2; stroke-dashoffset: -32; }
+  @keyframes iphoneFloat {
+    0%   { transform: translateX(1rem) translateY(1rem); }
+    50%  { transform: translateX(1rem) translateY(-0.5rem); }
+    100% { transform: translateX(1rem) translateY(1rem); }
   }
 
   @keyframes float {

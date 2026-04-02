@@ -123,32 +123,27 @@ const repoUrl = "https://github.com/Telconation/PARKIN";
       </div>
   </section>
 
-  <!-- ✅ FIX 8: Footer - perbaikan kontras warna & heading hierarchy
-       Masalah: text-surface-muted di footer memiliki kontras rendah
-       Fix: gunakan text-surface-text/70 yang lebih terang, dan heading dari h4 → h3
-       karena dalam footer tidak ada h2/h3 sebelumnya di konteks yang sama -->
   <footer class="bg-surface-bg border-t border-surface-border py-12 px-4 transition-colors duration-500">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           <div class="text-center md:text-left flex-1">
               <div class="w-8 h-8 rounded bg-gradient-brand flex items-center justify-center mb-4 mx-auto md:mx-0 overflow-hidden p-[2px]">
                   <img src="/images/icons/maskable_icon_x96.png" alt="Logo PARKIN" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain filter invert mix-blend-screen opacity-90" />
               </div>
-              <!-- ✅ FIX 8a: h3 mengganti h4 agar heading tidak skip level (h2→h4) -->
               <h3 class="text-surface-text font-bold mb-2">PARKIN &mdash; {t('footer.slogan')}</h3>
-              <!-- ✅ FIX 8b: Warna footer text ditingkatkan kontrasnya dari surface-muted ke warna lebih terang -->
-              <p class="text-sm text-surface-text/60 max-w-sm">{t('trust.os')} System.<br/>Built for scale natively on Edge technologies.</p>
+
+              <p class="text-sm text-surface-text/70 max-w-sm">{t('trust.os')} System.<br/>Built for scale natively on Edge technologies.</p>
           </div>
           <nav aria-label="Footer navigation" class="flex flex-col text-center md:text-right text-sm">
-              <a href="#fitur" class="text-surface-text/60 hover:text-surface-text mb-2 transition-colors">{t('nav.fitur')}</a>
-              <a href="#pricing" class="text-surface-text/60 hover:text-surface-text mb-2 transition-colors">{t('nav.pricing')}</a>
-              <a href="#faq" class="text-surface-text/60 hover:text-surface-text mb-2 transition-colors">{t('nav.faq')}</a>
-              <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="text-surface-text/60 hover:text-brand-primary mt-2 font-bold transition-colors"><i class="fa-brands fa-github" aria-hidden="true"></i> Source Code</a>
+              <a href="#fitur" class="text-surface-text/70 hover:text-surface-text mb-2 transition-colors">{t('nav.fitur')}</a>
+              <a href="#pricing" class="text-surface-text/70 hover:text-surface-text mb-2 transition-colors">{t('nav.pricing')}</a>
+              <a href="#faq" class="text-surface-text/70 hover:text-surface-text mb-2 transition-colors">{t('nav.faq')}</a>
+              <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="text-surface-text/70 hover:text-brand-primary mt-2 font-bold transition-colors"><i class="fa-brands fa-github" aria-hidden="true"></i> Source Code</a>
           </nav>
       </div>
-      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-surface-border flex flex-col sm:flex-row justify-between items-center text-xs text-surface-text/50">
-          <!-- ✅ FIX 8c: text-surface-text/50 lebih terang daripada opacity-60 dari surface-muted -->
-          <p>&copy; {t('footer.copyright')}</p>
-          <p>Made with &hearts; for the Open Source Community.</p>
+      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-surface-border flex flex-col sm:flex-row justify-between items-center text-xs">
+
+          <p class="text-surface-text/65 font-medium">&copy; {t('footer.copyright')}</p>
+          <p class="text-surface-text/65 font-medium">Made with &hearts; for the Open Source Community.</p>
       </div>
   </footer>
 </main>
