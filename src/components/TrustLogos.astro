@@ -1,0 +1,61 @@
+---
+export interface Props {
+  title?: string;
+}
+
+const { title = "Geared by The Best Technologies" } = Astro.props;
+
+// Daftar mock partner/platform yang menggerakkan sistem seperti YOLO v8 dll
+const logos = [
+  { text: "YOLO v8 AI", icon: "fa-solid fa-microchip", color: "text-brand-primary" },
+  { text: "TensorFlow", icon: "fa-solid fa-network-wired", color: "text-orange-500" },
+  { text: "OpenCV", icon: "fa-solid fa-eye", color: "text-green-500" },
+  { text: "Supabase", icon: "fa-solid fa-database", color: "text-emerald-400" },
+  { text: "PostgreSQL", icon: "fa-solid fa-server", color: "text-blue-400" },
+  { text: "Vue 3", icon: "fa-brands fa-vuejs", color: "text-emerald-500" },
+  { text: "Astro", icon: "fa-solid fa-rocket", color: "text-orange-600" },
+];
+
+// Supaya infinite scroll benar-benar "seamless", biasanya kita merender list dua kali berbarengan
+---
+
+<section class="py-16 md:py-24 bg-surface-bg border-t border-surface-border overflow-hidden transition-colors duration-500">
+  <div class="max-w-7xl mx-auto px-4 text-center mb-10 scroll-reveal">
+    <h3 class="font-display font-bold text-xl md:text-2xl text-surface-text">{title}</h3>
+  </div>
+
+  <div class="relative w-full overflow-hidden flex items-center select-none" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+    <!-- Wrap yang digerakkan oleh CSS Animasi -->
+    <div class="logo-marquee flex gap-16 md:gap-24 w-max items-center">
+      
+      <!-- List 1 -->
+      {logos.map((logo) => (
+        <div class="flex items-center gap-3 text-surface-text/70 opacity-70 hover:opacity-100 hover:scale-105 transition-all grayscale hover:grayscale-0 whitespace-nowrap">
+          <i class={`${logo.icon} text-3xl md:text-4xl ${logo.color}`}></i>
+          <span class="font-display font-medium text-lg md:text-xl tracking-wide">{logo.text}</span>
+        </div>
+      ))}
+      
+      <!-- List 2 (Clone untuk Seamless Loop) -->
+      {logos.map((logo) => (
+        <div class="flex items-center gap-3 text-surface-text/70 opacity-70 hover:opacity-100 hover:scale-105 transition-all grayscale hover:grayscale-0 whitespace-nowrap">
+          <i class={`${logo.icon} text-3xl md:text-4xl ${logo.color}`}></i>
+          <span class="font-display font-medium text-lg md:text-xl tracking-wide">{logo.text}</span>
+        </div>
+      ))}
+      
+    </div>
+  </div>
+</section>
+
+<style>
+  .logo-marquee {
+    animation: infiniteScroll 25s linear infinite;
+  }
+  
+  /* Karena ada 2 Set (100% dari Lebar Original = Separuh Lebar Kontainer ini Karena Isinya di-double) */
+  @keyframes infiniteScroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); } 
+  }
+</style>

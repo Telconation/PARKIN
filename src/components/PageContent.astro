@@ -3,6 +3,7 @@ import Navbar from './Navbar.astro';
 import Hero from './Hero.astro';
 import Features from './Features.astro';
 import HowItWorks from './HowItWorks.astro';
+import TrustLogos from './TrustLogos.astro';
 import Pricing from './Pricing.astro';
 import FAQ from './FAQ.astro';
 import { useTranslations } from '../i18n/ui';
@@ -20,19 +21,19 @@ const repoUrl = "https://github.com/Telconation/PARKIN";
 <main class="bg-surface-bg transition-colors duration-500">
   <Hero lang={lang} />
 
-  <!-- S3: Social Proof / Stats Bar -->
+  <!-- S3: Stats Bar -->
   <section class="py-20 bg-surface-card border-y border-surface-border transition-colors duration-500">
     <div class="max-w-7xl mx-auto px-4 scroll-reveal">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-surface-border">
-        <div class="pt-4 md:pt-0">
+        <div class="py-6 md:py-0">
           <p class="font-display text-4xl font-black text-brand-primary-light mb-1">0</p>
           <p class="text-surface-muted text-sm font-bold uppercase tracking-widest">{t('stats.cost')}</p>
         </div>
-        <div class="pt-8 md:pt-0">
+        <div class="py-6 md:py-0">
           <p class="font-display text-4xl font-black text-surface-text mb-1">&gt; 500</p>
           <p class="text-surface-muted text-sm font-bold uppercase tracking-widest">{t('stats.slots')}</p>
         </div>
-        <div class="pt-8 md:pt-0">
+        <div class="py-6 md:py-0">
           <p class="font-display text-4xl font-black text-status-ok mb-1">&lt; 100ms</p>
           <p class="text-surface-muted text-sm font-bold uppercase tracking-widest">{t('stats.latency')}</p>
         </div>
@@ -42,6 +43,7 @@ const repoUrl = "https://github.com/Telconation/PARKIN";
 
   <Features lang={lang} />
   <HowItWorks lang={lang} />
+  <TrustLogos />
 
   <!-- S7: Segmen Pengguna Tabs -->
   <section class="py-24 px-4 bg-surface-bg border-t border-surface-border transition-colors duration-500">
@@ -95,15 +97,13 @@ const repoUrl = "https://github.com/Telconation/PARKIN";
     });
   </script>
 
-  <!-- NOTE: Compare Table (S8) HAS BEEN REMOVED PER USER PLAN -->
-
   <!-- S9: Trust Signals -->
   <section class="py-12 bg-surface-bg border-y border-surface-border transition-colors duration-500">
       <div class="max-w-6xl mx-auto px-4 flex flex-wrap justify-between items-center gap-6 opacity-80 mix-blend-luminosity dark:mix-blend-normal saturate-0 hover:saturate-100 transition-all duration-700">
-          <span class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text whitespace-nowrap"><i class="fa-solid fa-microchip text-lg"></i> {t('trust.yolo')}</span>
-          <span class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text whitespace-nowrap"><i class="fa-solid fa-mobile-screen-button text-lg"></i> {t('trust.pwa')}</span>
-          <span class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text whitespace-nowrap"><i class="fa-solid fa-lock text-lg"></i> {t('trust.https')}</span>
-          <a href={repoUrl} target="_blank" class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text hover:text-brand-primary transition-colors whitespace-nowrap"><i class="fa-solid fa-code text-lg"></i> {t('trust.os')}</a>
+          <span class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text whitespace-nowrap"><i class="fa-solid fa-microchip text-lg" aria-hidden="true"></i> {t('trust.yolo')}</span>
+          <span class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text whitespace-nowrap"><i class="fa-solid fa-mobile-screen-button text-lg" aria-hidden="true"></i> {t('trust.pwa')}</span>
+          <span class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text whitespace-nowrap"><i class="fa-solid fa-lock text-lg" aria-hidden="true"></i> {t('trust.https')}</span>
+          <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 font-mono text-xs sm:text-sm font-bold text-surface-text hover:text-brand-primary transition-colors whitespace-nowrap"><i class="fa-solid fa-code text-lg" aria-hidden="true"></i> {t('trust.os')}</a>
       </div>
   </section>
 
@@ -112,36 +112,41 @@ const repoUrl = "https://github.com/Telconation/PARKIN";
 
   <!-- S12: Final CTA Banner -->
   <section class="py-24 px-4 bg-gradient-brand relative overflow-hidden">
-      <!-- Dot grid overlay -->
-      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20 mask-image:linear-gradient(to_bottom,black,transparent)"></div>
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjZmZmIiBmaWxsLW9wYWNpdHk9IjAuMDUiLz4KPC9zdmc+')] opacity-20"></div>
       <div class="max-w-4xl mx-auto text-center relative z-10 scroll-reveal">
           <h2 class="font-display text-4xl sm:text-5xl font-black text-white mb-6">{t('cta.title')}</h2>
           <p class="text-white/90 text-lg mb-10 max-w-2xl mx-auto font-medium">{t('cta.desc')}</p>
-          <a href="https://wa.me/6281212932426" target="_blank" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg font-bold text-slate-800 bg-white hover:bg-gray-100 shadow-2xl hover:scale-105 transition-all">
-             <i class="fa-brands fa-whatsapp text-2xl text-green-500"></i>
+          <a href="https://wa.me/6281212932426" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 rounded-xl text-lg font-bold text-slate-800 bg-white hover:bg-gray-100 shadow-2xl hover:scale-105 transition-all">
+             <i class="fa-brands fa-whatsapp text-2xl text-green-500" aria-hidden="true"></i>
              {t('cta.btn')}
           </a>
       </div>
   </section>
 
-  <!-- S13: Footer -->
-  <footer class="bg-surface-bg border-t border-surface-border text-surface-muted py-12 px-4 transition-colors duration-500">
+  <!-- ✅ FIX 8: Footer - perbaikan kontras warna & heading hierarchy
+       Masalah: text-surface-muted di footer memiliki kontras rendah
+       Fix: gunakan text-surface-text/70 yang lebih terang, dan heading dari h4 → h3
+       karena dalam footer tidak ada h2/h3 sebelumnya di konteks yang sama -->
+  <footer class="bg-surface-bg border-t border-surface-border py-12 px-4 transition-colors duration-500">
       <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           <div class="text-center md:text-left flex-1">
               <div class="w-8 h-8 rounded bg-gradient-brand flex items-center justify-center mb-4 mx-auto md:mx-0 overflow-hidden p-[2px]">
-                  <img src="/images/icons/maskable_icon_x96.png" alt="Logo" class="w-full h-full object-contain filter invert mix-blend-screen opacity-90" />
+                  <img src="/images/icons/maskable_icon_x96.png" alt="Logo PARKIN" width="96" height="96" loading="lazy" decoding="async" class="w-full h-full object-contain filter invert mix-blend-screen opacity-90" />
               </div>
-              <h4 class="text-surface-text font-bold mb-2">PARKIN &mdash; {t('footer.slogan')}</h4>
-              <p class="text-xs max-w-sm">{t('trust.os')} System.<br/>Built for scale natively on Edge technologies.</p>
+              <!-- ✅ FIX 8a: h3 mengganti h4 agar heading tidak skip level (h2→h4) -->
+              <h3 class="text-surface-text font-bold mb-2">PARKIN &mdash; {t('footer.slogan')}</h3>
+              <!-- ✅ FIX 8b: Warna footer text ditingkatkan kontrasnya dari surface-muted ke warna lebih terang -->
+              <p class="text-sm text-surface-text/60 max-w-sm">{t('trust.os')} System.<br/>Built for scale natively on Edge technologies.</p>
           </div>
-          <div class="flex flex-col text-center md:text-right text-sm">
-              <a href="#fitur" class="hover:text-surface-text mb-2">{t('nav.fitur')}</a>
-              <a href="#pricing" class="hover:text-surface-text mb-2">{t('nav.pricing')}</a>
-              <a href="#faq" class="hover:text-surface-text mb-2">{t('nav.faq')}</a>
-              <a href={repoUrl} target="_blank" class="hover:text-brand-primary mt-2 font-bold"><i class="fa-brands fa-github"></i> Source Code</a>
-          </div>
+          <nav aria-label="Footer navigation" class="flex flex-col text-center md:text-right text-sm">
+              <a href="#fitur" class="text-surface-text/60 hover:text-surface-text mb-2 transition-colors">{t('nav.fitur')}</a>
+              <a href="#pricing" class="text-surface-text/60 hover:text-surface-text mb-2 transition-colors">{t('nav.pricing')}</a>
+              <a href="#faq" class="text-surface-text/60 hover:text-surface-text mb-2 transition-colors">{t('nav.faq')}</a>
+              <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="text-surface-text/60 hover:text-brand-primary mt-2 font-bold transition-colors"><i class="fa-brands fa-github" aria-hidden="true"></i> Source Code</a>
+          </nav>
       </div>
-      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-surface-border flex flex-col sm:flex-row justify-between items-center text-xs opacity-60">
+      <div class="max-w-7xl mx-auto mt-12 pt-6 border-t border-surface-border flex flex-col sm:flex-row justify-between items-center text-xs text-surface-text/50">
+          <!-- ✅ FIX 8c: text-surface-text/50 lebih terang daripada opacity-60 dari surface-muted -->
           <p>&copy; {t('footer.copyright')}</p>
           <p>Made with &hearts; for the Open Source Community.</p>
       </div>

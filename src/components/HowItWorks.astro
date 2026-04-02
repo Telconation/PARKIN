@@ -40,20 +40,38 @@ const steps = [
     </div>
 
     <div class="relative mt-20">
-      <!-- Horizontal Connecting Line -->
-      <div class="hidden md:block absolute top-[48px] left-[12%] right-[12%] h-px bg-brand-primary/20 z-0"></div>
+      <!-- Desktop Flow Line (Horizontal) -->
+      <div class="hidden md:block absolute top-[48px] left-[12%] right-[12%] h-[2px] bg-surface-border/40 overflow-hidden z-0">
+         <div class="absolute top-0 left-0 w-[20%] h-full bg-gradient-to-r from-brand-primary to-status-ok blur-[1px] rounded-full shadow-glow-blue" style="animation: runLineH 3s linear infinite;"></div>
+      </div>
+
+      <!-- Mobile Flow Line (Vertical) -->
+      <div class="md:hidden absolute top-[48px] bottom-[120px] left-[50%] -translate-x-[50%] w-[2px] bg-surface-border/40 overflow-hidden z-0">
+         <div class="absolute top-0 left-0 h-[20%] w-full bg-gradient-to-b from-brand-primary to-status-ok blur-[1px] rounded-full shadow-glow-blue" style="animation: runLineV 3s linear infinite;"></div>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
         {steps.map((step) => (
           <div class="flex flex-col items-center text-center group">
-            <div class="w-24 h-24 rounded-full bg-surface-card flex items-center justify-center mb-8 shadow-sm border border-brand-primary/10 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-glow-blue bg-blend-soft-light">
+            <div class="relative z-10 w-24 h-24 rounded-full bg-surface-card flex items-center justify-center mb-8 shadow-sm border border-brand-primary/10 transition-transform duration-300 group-hover:scale-105 group-hover:shadow-glow-blue bg-blend-soft-light">
               <span class="font-display text-4xl font-black text-brand-primary tracking-tighter">{step.number}</span>
             </div>
-            <h3 class="font-display font-semibold text-lg text-surface-text mb-3">{step.title}</h3>
-            <p class="text-surface-muted text-sm leading-relaxed max-w-[220px]">{step.desc}</p>
+            <h3 class="relative z-10 bg-surface-bg px-4 py-1 font-display font-semibold text-lg text-surface-text mb-3 rounded-lg">{step.title}</h3>
+            <p class="relative z-10 bg-surface-bg px-4 py-2 text-surface-muted text-sm leading-relaxed max-w-[220px] rounded-lg">{step.desc}</p>
           </div>
         ))}
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes runLineH {
+    0% { transform: translateX(-150%); left: 0%; }
+    100% { transform: translateX(500%); left: 100%; }
+  }
+  @keyframes runLineV {
+    0% { transform: translateY(-150%); top: 0%; }
+    100% { transform: translateY(500%); top: 100%; }
+  }
+</style>
