@@ -5,59 +5,97 @@
 
 @layer base {
   :root {
-    --color-surface-bg: #F8FAFC;
-    --color-surface-card: #FFFFFF;
+    --color-surface-bg: #f8fafc;
+    --color-surface-card: #ffffff;
     --color-surface-border: rgba(15, 23, 42, 0.1);
-    --color-surface-text: #0F172A;
+    --color-surface-text: #0f172a;
     --color-surface-muted: #475569;
 
-    --color-status-ok: #16A34A;
-    --color-status-warn: #D97706;
-    --color-status-danger: #DC2626;
+    --color-status-ok: #16a34a;
+    --color-status-warn: #d97706;
+    --color-status-danger: #dc2626;
 
-    --color-brand-primary: #2563EB;
-    --color-brand-primary-light: #3B82F6;
-    --color-brand-primary-dark: #1D4ED8;
+    --color-brand-primary: #2563eb;
+    --color-brand-primary-light: #3b82f6;
+    --color-brand-primary-dark: #1d4ed8;
     --color-brand-secondary: #059669;
-    --color-brand-accent: #38BDF8;
+    --color-brand-accent: #38bdf8;
 
-    --bg-image-brand: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-    --bg-image-card: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
-    --bg-image-glass: linear-gradient(145deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 100%);
+    --bg-image-brand: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    --bg-image-card: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    --bg-image-glass: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.7) 0%,
+      rgba(255, 255, 255, 0.3) 100%
+    );
 
     --shadow-glow-blue: 0 0 20px rgba(37, 99, 235, 0.2);
     --shadow-glow-green: 0 0 20px rgba(5, 150, 105, 0.2);
   }
 
   :root.dark {
-    --color-surface-bg: #0B1426;
-    --color-surface-card: #0F1D32;
+    --color-surface-bg: #0b1426;
+    --color-surface-card: #0f1d32;
     --color-surface-border: rgba(136, 153, 180, 0.15);
-    --color-surface-text: #E8EDF5;
-    --color-surface-muted: #8899B4;
+    --color-surface-text: #e8edf5;
+    --color-surface-muted: #8899b4;
 
-    --color-status-ok: #43A047;
-    --color-status-warn: #FFB300;
-    --color-status-danger: #EF4444;
+    --color-status-ok: #43a047;
+    --color-status-warn: #ffb300;
+    --color-status-danger: #ef4444;
 
-    --color-brand-primary: #1565C0;
-    --color-brand-primary-light: #1E88E5;
-    --color-brand-primary-dark: #0D47A1;
-    --color-brand-secondary: #43A047;
-    --color-brand-accent: #2196F3;
+    --color-brand-primary: #1565c0;
+    --color-brand-primary-light: #1e88e5;
+    --color-brand-primary-dark: #0d47a1;
+    --color-brand-secondary: #43a047;
+    --color-brand-accent: #2196f3;
 
-    --bg-image-brand: linear-gradient(135deg, #1565C0 0%, #0D47A1 100%);
-    --bg-image-card: linear-gradient(135deg, var(--color-surface-card) 0%, var(--color-surface-bg) 100%);
-    --bg-image-glass: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+    --bg-image-brand: linear-gradient(135deg, #1565c0 0%, #0d47a1 100%);
+    --bg-image-card: linear-gradient(
+      135deg,
+      var(--color-surface-card) 0%,
+      var(--color-surface-bg) 100%
+    );
+    --bg-image-glass: linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
 
     --shadow-glow-blue: 0 0 20px rgba(21, 101, 192, 0.3);
     --shadow-glow-green: 0 0 20px rgba(67, 160, 71, 0.3);
   }
+
+  @font-face {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 400 700;
+    font-display: swap;
+    src: local("Inter");
+  }
+  @font-face {
+    font-family: "Syne";
+    font-style: normal;
+    font-weight: 700 800;
+    font-display: swap;
+    src: local("Syne");
+  }
+
+  @font-face {
+    font-family: "Font Awesome 6 Brands";
+    font-display: swap;
+    src: local("Font Awesome 6 Brands");
+  }
+  @font-face {
+    font-family: "Font Awesome 6 Free";
+    font-display: swap;
+    src: local("Font Awesome 6 Free");
+  }
 }
 
 @theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Syne", ui-sans-serif, system-ui, sans-serif;
 
   --color-surface-bg: var(--color-surface-bg);
   --color-surface-card: var(--color-surface-card);
@@ -82,24 +120,33 @@
   --shadow-glow-blue: var(--shadow-glow-blue);
   --shadow-glow-green: var(--shadow-glow-green);
 
-
   --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   --animate-slide-up: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-fade-in: fadeIn 0.4s ease-out forwards;
 }
 
 @keyframes slideUp {
-  0% { transform: translateY(30px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px; 
+  scroll-padding-top: 80px;
 }
 
 body {
@@ -131,5 +178,14 @@ body {
     transition: none;
     opacity: 1;
     transform: none;
+  }
+
+  /* Matikan semua animasi untuk pengguna yang prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
