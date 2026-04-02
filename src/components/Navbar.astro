@@ -11,6 +11,7 @@ const t = useTranslations(lang);
 const repoUrl = "https://github.com/Telconation/PARKIN";
 const demoUrl = "https://dashboard.parkin.my.id";
 
+// URIs
 const homeUrl = lang === 'en' ? '/en/' : '/';
 const otherLangUrl = lang === 'id' ? '/en/' : '/';
 const otherLangText = lang === 'id' ? 'EN' : 'ID';
@@ -41,10 +42,12 @@ const otherLangText = lang === 'id' ? 'EN' : 'ID';
       <!-- Desktop & Mobile Actions + Hamburger -->
       <div class="flex items-center gap-4">
 
+        <!-- Theme Toggle -->
         <button id="theme-toggle" aria-label="Toggle Dark Mode" class="text-surface-muted hover:text-surface-text focus:outline-none p-2 rounded-lg bg-surface-card border border-surface-border shadow-sm">
           <i class="fa-solid fa-moon text-lg" id="theme-icon"></i>
         </button>
 
+        <!-- Lang Toggle -->
         <a href={otherLangUrl} aria-label="Toggle Language" class="text-surface-muted hover:text-surface-text font-bold text-xs p-2.5 rounded-lg bg-surface-card border border-surface-border shadow-sm">
           {otherLangText}
         </a>
@@ -133,13 +136,14 @@ const otherLangText = lang === 'id' ? 'EN' : 'ID';
     }
 
     if (themeToggle) {
+      // Check stored preference or system preference
       const storedTheme = localStorage.getItem('theme');
       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       
       if (storedTheme === 'dark' || (!storedTheme && systemDark)) {
         setTheme(true);
       } else {
-        setTheme(false); 
+        setTheme(false); // Default to light if preferred or explicitly set
       }
 
       themeToggle.addEventListener('click', () => {
