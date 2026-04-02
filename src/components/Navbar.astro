@@ -8,10 +8,10 @@ export interface Props {
 const { lang } = Astro.props;
 const t = useTranslations(lang);
 
-const repoUrl = "https://github.com/Telconation/PARKIN";
-const demoUrl = "https://dashboard.parkin.my.id";
+const repoUrl = import.meta.env.PUBLIC_REPO_URL;
+const demoUrl = import.meta.env.PUBLIC_DEMO_URL;
 
-// URIs
+
 const homeUrl = lang === 'en' ? '/en/' : '/';
 const otherLangUrl = lang === 'id' ? '/en/' : '/';
 const otherLangText = lang === 'id' ? 'EN' : 'ID';

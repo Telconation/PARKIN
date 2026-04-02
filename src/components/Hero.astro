@@ -34,19 +34,11 @@ const demoUrl = "https://dashboard.parkin.my.id";
       </a>
     </div>
   </div>
-
-  <!-- ✅ FIX 4: LCP image dengan fetchpriority="high" + explicit width/height untuk CLS 
-       + srcset responsive agar mobile tidak download gambar 1920px penuh -->
-  <div class="max-w-5xl mx-auto mt-16 sm:mt-24 rounded-2xl overflow-hidden glass hover:shadow-glow-blue transition-all duration-700 animate-fade-in relative z-10 w-full p-2 bg-surface-card border border-surface-border shadow-2xl animate-float" style="animation-delay: 0.2s">
+  <div
+    class="max-w-5xl mx-auto mt-16 sm:mt-24 rounded-2xl overflow-hidden glass hover:shadow-glow-blue transition-all duration-700 animate-fade-in relative z-10 w-full p-2 bg-surface-card border border-surface-border shadow-2xl animate-float"
+    style="animation-delay: 0.2s"
+  >
     <div class="rounded-xl overflow-hidden relative">
-      <!--
-        FIX LCP:
-        - fetchpriority="high": memberitahu browser ini adalah resource paling penting
-        - loading="eager": jangan lazy-load ini, muat segera
-        - decoding="async": parsing gambar tidak blokir thread utama
-        - width/height: mencegah CLS karena browser tahu dimensi sebelum gambar dimuat
-        - srcset: mobile (~634px lebar) dapat gambar 800w, desktop dapat 1920w
-      -->
       <img
         src="/images/screenshots/Macbook-Air.webp"
         alt="Dashboard PARKIN Monitoring AI"
@@ -56,20 +48,20 @@ const demoUrl = "https://dashboard.parkin.my.id";
         fetchpriority="high"
         loading="eager"
         decoding="async"
-        srcset="/images/screenshots/Macbook-Air-800w.webp 800w, /images/screenshots/Macbook-Air.webp 1920w"
+        srcset="/images/screenshots/Macbook-Air-800w.webp 800w, /images/screenshots/Macbook-Air-1200w.webp 1200w, /images/screenshots/Macbook-Air.webp 1920w"
         sizes="(max-width: 768px) calc(100vw - 2rem), (max-width: 1280px) calc(100vw - 4rem), 1280px"
       />
-       <!-- Floating Mockup Overlay -->
-        <div class="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 bg-surface-card/90 backdrop-blur border border-surface-border p-4 rounded-xl shadow-2xl hidden md:block">
-             <div class="flex items-center gap-2 mb-2">
-                <span class="w-2 h-2 rounded-full bg-status-ok animate-pulse"></span>
-                <span class="text-status-ok text-xs font-bold tracking-wider uppercase">{t('hero.badge')}</span>
-             </div>
-             <p class="text-surface-muted text-[10px] font-bold uppercase tracking-wider mb-1">{t('hero.car')}</p>
-             <div class="text-2xl font-black text-surface-text flex items-baseline gap-1">
-                 <span class="counter-mobil" aria-label="45">45</span> <span class="text-xs font-normal text-surface-muted">/100</span>
-             </div>
-        </div>
+      <!-- Floating Mockup Overlay-->
+      <div class="absolute bottom-4 right-4 sm:bottom-10 sm:right-10 bg-surface-card/90 backdrop-blur border border-surface-border p-4 rounded-xl shadow-2xl hidden md:block">
+           <div class="flex items-center gap-2 mb-2">
+              <span class="w-2 h-2 rounded-full bg-status-ok animate-pulse"></span>
+              <span class="text-status-ok text-xs font-bold tracking-wider uppercase">{t('hero.badge')}</span>
+           </div>
+           <p class="text-surface-muted text-[10px] font-bold uppercase tracking-wider mb-1">{t('hero.car')}</p>
+           <div class="text-2xl font-black text-surface-text flex items-baseline gap-1">
+               <span class="counter-mobil" aria-label="45">45</span> <span class="text-xs font-normal text-surface-muted">/100</span>
+           </div>
+      </div>
     </div>
   </div>
 
@@ -81,8 +73,6 @@ const demoUrl = "https://dashboard.parkin.my.id";
     initial-value: 0;
     inherits: false;
   }
-  /* ✅ FIX 5: counter menggunakan ::after agar teks asli "45" tetap ada untuk aksesibilitas,
-     animasi hanya visual overlay */
   .counter-mobil {
     counter-reset: num var(--num);
     animation: countmobil 3s ease-out forwards;

@@ -42,12 +42,12 @@ const steps = [
     <div class="relative mt-20">
       <!-- Desktop Flow Line (Horizontal) -->
       <div class="hidden md:block absolute top-[48px] left-[12%] right-[12%] h-[2px] bg-surface-border/40 overflow-hidden z-0">
-         <div class="absolute top-0 left-0 w-[20%] h-full bg-gradient-to-r from-brand-primary to-status-ok blur-[1px] rounded-full shadow-glow-blue" style="animation: runLineH 3s linear infinite;"></div>
+        <div class="absolute top-0 left-0 h-full bg-gradient-to-r from-brand-primary to-status-ok blur-[1px] rounded-full shadow-glow-blue line-runner-h"></div>
       </div>
 
       <!-- Mobile Flow Line (Vertical) -->
       <div class="md:hidden absolute top-[48px] bottom-[120px] left-[50%] -translate-x-[50%] w-[2px] bg-surface-border/40 overflow-hidden z-0">
-         <div class="absolute top-0 left-0 h-[20%] w-full bg-gradient-to-b from-brand-primary to-status-ok blur-[1px] rounded-full shadow-glow-blue" style="animation: runLineV 3s linear infinite;"></div>
+        <div class="absolute top-0 left-0 w-full bg-gradient-to-b from-brand-primary to-status-ok blur-[1px] rounded-full shadow-glow-blue line-runner-v"></div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 relative z-10">
@@ -66,12 +66,29 @@ const steps = [
 </section>
 
 <style>
-  @keyframes runLineH {
-    0% { transform: translateX(-150%); left: 0%; }
-    100% { transform: translateX(500%); left: 100%; }
+  .line-runner-h {
+    width: 20%;
+    height: 100%;
+    /* Mulai dari luar kiri, bergerak ke luar kanan */
+    animation: runLineH 3s linear infinite;
+    will-change: transform;
   }
+
+  .line-runner-v {
+    height: 20%;
+    width: 100%;
+    /* Mulai dari luar atas, bergerak ke luar bawah */
+    animation: runLineV 3s linear infinite;
+    will-change: transform;
+  }
+
+  @keyframes runLineH {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(600%); }
+  }
+
   @keyframes runLineV {
-    0% { transform: translateY(-150%); top: 0%; }
-    100% { transform: translateY(500%); top: 100%; }
+    0%   { transform: translateY(-100%); }
+    100% { transform: translateY(600%); }
   }
 </style>

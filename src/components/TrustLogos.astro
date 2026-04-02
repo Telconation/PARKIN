@@ -5,7 +5,7 @@ export interface Props {
 
 const { title = "Geared by The Best Technologies" } = Astro.props;
 
-// Daftar mock partner/platform yang menggerakkan sistem seperti YOLO v8 dll
+// Daftar mock partner/platform
 const logos = [
   { text: "YOLO v8 AI", icon: "fa-solid fa-microchip", color: "text-brand-primary" },
   { text: "TensorFlow", icon: "fa-solid fa-network-wired", color: "text-orange-500" },
@@ -15,8 +15,6 @@ const logos = [
   { text: "Vue 3", icon: "fa-brands fa-vuejs", color: "text-emerald-500" },
   { text: "Astro", icon: "fa-solid fa-rocket", color: "text-orange-600" },
 ];
-
-// Supaya infinite scroll benar-benar "seamless", biasanya kita merender list dua kali berbarengan
 ---
 
 <section class="py-16 md:py-24 bg-surface-bg border-t border-surface-border overflow-hidden transition-colors duration-500">
@@ -25,7 +23,6 @@ const logos = [
   </div>
 
   <div class="relative w-full overflow-hidden flex items-center select-none" style="mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
-    <!-- Wrap yang digerakkan oleh CSS Animasi -->
     <div class="logo-marquee flex gap-16 md:gap-24 w-max items-center">
       
       <!-- List 1 -->
@@ -51,9 +48,7 @@ const logos = [
 <style>
   .logo-marquee {
     animation: infiniteScroll 25s linear infinite;
-  }
-  
-  /* Karena ada 2 Set (100% dari Lebar Original = Separuh Lebar Kontainer ini Karena Isinya di-double) */
+  }  
   @keyframes infiniteScroll {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); } 
