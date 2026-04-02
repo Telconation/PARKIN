@@ -1,107 +1,73 @@
-# 🅿️ PARKIN (Smart Parking System)
+<p align="center">
+<img src="public\images\icons\icon-x144.png">
+</p>
+<h1 align="center">PARKIN Landing Page</h1>
 
-PARKIN adalah sistem cerdas manajemen lahan parkir yang dirancang untuk dapat di-scale ke level Enterprise dengan basis Arsitektur Terpisah (*Decoupled Architecture*). Aplikasi ini mampu melacak slot masuk dan keluar kendaraan secara *Real-Time*, memancarkan data melalui **WebSockets**, serta menerima tangkapan gambar dari sistem Kamera Eksternal menggunakan protokol berkecepatan tinggi **gRPC**.
-
-Proyek ini dibangun menggunakan filosofi **Secure by Design** (via JWT in HttpOnly Cookies) dan **High Maintainability** (Modular, Serverless-ready) sehingga sangat efisien dalam pengeluaran biaya cloud host. Kami mengundang *Developer* di seluruh penjuru dunia untuk berkontribusi (*Open Source*)! 🚀
-
----
+Ini adalah repositori khusus untuk antarmuka muka (**Landing Page**) proyek PARKIN. Website ini dibangun untuk melayani fungsi pengenalan produk.
+> **PENTING:** Kode dari repositori **PARKIN System** dipublikasikan secara terpisah atau bersifat tertutup (privat).
 
 ## 🛠️ Stack Teknologi
 
-Proyek ini terbagi menjadi dua bagian utama: Arsitektur **FrontEnd** dan **BackEnd**.
-
-### 🎨 FrontEnd (UI & PWA)
-- **Framework:** Vue.js 3 (Composition API) + Vite.
-- **State Management:** Pinia (Modular).
-- **Styling:** Tailwind CSS + Desain Glassmorphism/Neumorphism ringan.
-- **Icons:** FontAwesome Free (DRY SVG rendering).
-- **Konektivitas:** Fetch API (Interceptors) & WebSocket Client Native.
-
-### ⚙️ BackEnd (REST + Real-Time + gRPC)
-- **Runtime:** Node.js (ES Modules).
-- **Framework REST:** Express.js 5.
-- **Real-Time Engine:** `ws` (Node WebSocket Native) dengan manajemen koneksi aman di memori (Anti *Memory Leak*).
-- **Database:** Supabase (PostgreSQL managed cloud-SQL) dengan utilisasi `Supabase RPC` untuk performa *high-concurrency*.
-- **Otentikasi:** JWT-based dengan rotasi token pada `HttpOnly Cookies`.
-- **Eksternal I/O:** `grpc-js` murni untuk menerima pesan/data berat dari Model Machine Learning/Kamera IoT berbahasa Python/C++.
-
+- **Framework Builder:** Astro (V5.x)
+- **Styling:** Tailwind CSS V4 (Bawaan Astro Integration) + Vanilla CSS (`global.css`)
+- **Assets / Icons:** FontAwesome v6 (CDN / SVG rendering)
 ---
 
-## 🏗️ Struktur Repositori
+## 🏗️ Struktur Direktori Dasar (Landing Page)
 
 ```text
-Parkin/
-├── BackEnd/               # API, WebSockets, dan Server gRPC Node.js
-│   ├── proto/             # Skema Protocol Buffer (.proto)
-│   ├── src/
-│   │   ├── config/        # Koneksi Supabase & Environment
-│   │   ├── controllers/   # Logika bisnis per titik API
-│   │   ├── middlewares/   # Guards: Auth JWT & Rate Limiter
-│   │   ├── routes/        # Rute Express HTTP
-│   │   └── services/      # Layanan WebSocket & Supabase RPC Stats
-│   └── app.js             # Entry point backend
-│
-└── FrontEnd/              # PWA Aplikasi Client
-    ├── src/
-    │   ├── assets/        # Gambar statis & Konfigurasi CSS Root
-    │   ├── components/    # Komponen Reusable (UI, Notifikasi Install PWA)
-    │   ├── router/        # Navigasi halaman (Vue Router)
-    │   ├── stores/        # Manajemen State Global (Pinia)
-    │   ├── utils/         # Wrapper fetch API dan helper fungsi
-    │   └── views/         # Halaman penuh (Layout, Login, Dashboard, dll)
-    └── index.html         # Entry point frontend
+LandingPage/
+├── public/                 # File publik tanpa proses
+│   ├── images/             # Tangkapan layar, Ikon, Favicon
+│   └── fonts/              # Tipehuruf kustom (Inter, dsb)
+├── src/
+│   ├── components/         # Konfigurasi per-Komponen Astro (Navbar, Hero, FAQ)
+│   ├── i18n/               # Kamus translasi Bahasa (ui.ts)
+│   ├── layouts/            # Tata Letak Utama (Blok anti-FOIT ada di sini)
+│   ├── pages/              # Routing Aplikasi (index.astro, en/index.astro)
+│   └── styles/             # Global Tailwind & Root CSS variabel (global.css)
+├── astro.config.mjs        # Konfigurasi Astro
+└── package.json            # Daftar NPM Script & Dependencies
 ```
 
 ---
 
-## 💻 Panduan Instalasi Lokal (Setup)
+## 💻 Panduan Instalasi Lokal (Penyetelan)
 
-Bagi Anda yang ingin ikut membedah atau berkontribusi dalam pengembangan PARKIN, ikuti langkah-langkah instalasi berikut:
+Anda bisa menjalankan salinan murni dari repositori situs pemasaran ini untuk dipelajari atau membantu pemecahan masalah:
 
-### Persyaratan Awal (Prerequisites)
-1. **Node.js** v18+ atau versi lebih baru.
-2. Manager paket `npm` atau `yarn`.
-3. Akun/Proyek **Supabase** (Versi free-tier *Database* sudah sangat cukup).
+1. **Pastikan Node.js terinstal** (Versi 18+ sangat disarankan).
+2. Tiru (_Clone_) repositori Landing Page ini ke komputer Anda.
+3. Masuk ke direktori utama: `cd LandingPage`
+4. Lakukan instalasi ketergantungan paket Node:
+   ```bash
+   npm install
+   ```
+5. Putar _Development Server_:
+   ```bash
+   npm run dev
+   ```
+6. Situs dapat diakses melalui peramban pada alamat lokal (umumnya `http://localhost:4321`).
 
-### 1. Setup Database (Supabase)
-Karena perhitungan parkir menggunakan sistem terpadu (Supabase RPC - Remote Procedure Call), buat tabel `users`, `vehicle_logs`, `settings` di Supabase dan tempelkan fungsi SQL *Stats* bawaan (cek berkas migrasi jika ada, atau buat manual tabel minimal).
-
-### 2. Setup BackEnd
-1. Masuk ke folder backend: `cd BackEnd`
-2. Install dependensi: `npm install`
-3. Gandakan file environtment contoh: `cp .env.example .env`
-4. Isikan seluruh baris rahasia di dalam `.env`:
-   - `SUPABASE_URL` dan `SUPABASE_SERVICE_ROLE_KEY`
-   - `JWT_SECRET` dan `JWT_REFRESH_SECRET`
-5. Jalankan server backend (termasuk WebSocket dan gRPC): `npm run dev`
-
-### 3. Setup FrontEnd
-1. Masuk ke folder frontend: `cd FrontEnd`
-2. Install dependensi UI: `npm install`
-3. Konfigurasikan environtment lokal di file `.env` FrontEnd (misal `VITE_API_URL=http://localhost:3000/api`).
-4. Jalankan *Vite Dev Server*: `npm run dev`
-5. Aplikasi klien akan menyala dalam mode HOT Reload (biasanya di `http://localhost:5173`).
+Untuk menguji kompilasi statis tahap produksi:
+```bash
+npm run build
+npm run preview
+```
 
 ---
 
-## 🔒 Postur Keamanan (Security Feature)
+## 🤝 Aturan Kontribusi Khusus (Semi-Open Source)
 
-Proyek ini telah disertifikasi ulang dan tidak mengizinkan _Bad Practices_. Jika Anda mengirim Pull Request (PR), perhatikan hal berikut:
-- **Jangan gunakan *LocalStorage*** untuk menyimpan Session JWT karena rawan XSS. *Gunakan selalu mekanisme Cookie HttpOnly bawaan dari server.*
-- **No N+1 Queries**: Saat mengambil data logs (`vehicle_logs`), gunakan `start` & `limit` langsung di Database *(Pagination)*, jangan me-*looping* dari javascript.
-- Jangan menghapus perlindungan `helmet` dan `express-rate-limit` yang sudah ada di Backend API.
+Kode proyek ini pada dasarnya bersifat bebas akses dan dapat dianalisis secara bebas untuk keperluan edukasi antarmuka. **NAMUN**, Akses Repositori PARKIN System bersifat terbatas. Uuntuk integrasi perubahan (*Pull Request*) harus mematuhi kebijakan verifikasi internal.
 
----
+Langkah-lagkah jika Anda ingin menyerahkan ide penyempurnaan ke kode dasar ini:
 
-## 🤝 Mari Berkontribusi (Contributing Guide)
+1. **WAJIB:** Buka sebuah diskursus di menu _**Issues**_ pada repositori GitHub ini terlebih dahulu. Paparkan desain proposal atau _bug_ apa yang ingin Anda selesaikan.
+2. Tunggu persetujuan (_Approval_) dari (_Owner / Maintainer_).
+3. Setelah proposal disetujui (_Owner / Maintainer_) akun anda akan ditambahkan sebagai _Collaborator_, kemudian Anda dapat Fork repositorinya.
+4. Setel perubahan di atas repositori kloningan milik Anda sendiri. Periksa kembali standar aksesibilitas tampilan (WCAG) yang ada.
+5. Jika telah siap, kirimkan **Pull Request (PR)** sembari menyertakan catatan Referensi #Issue dari langkah pertama.
+6. Saya akan mereviu kode baris per-baris sebelum ditarik (*merge*) ke produksi publik.
 
-Proyek ini menyambut siapapun untuk berpartisipasi dan menambahkan ekstensi fitur (misal: *Telegram Bot Webhook*, *Integrasi Payment Gateway Parkir*, dsb).
-
-1. Lakukan **Fork** pada repository ini.
-2. Buat _Branch_ fitur baru (`git checkout -b feature/FiturKerenAnda`).
-3. Lindungi kredibilitas *Clean Code*. Jauhkan kode *Controllers* dan komponen Vue dari duplikasi liar (*Dry Principle*).
-4. **Commit** progres Anda (`git commit -m 'Menambahkan Fitur Keren'`).
-5. Lakukan **Push** untuk melempar pembaruan ke cabang (`git push origin feature/FiturKerenAnda`).
-6. Buka **Pull Request** ke *main branch* melalui laman *GitHub Repository*.
-
-*Made with ❤️ for the Open Source Community.*
+_Terima kasih atas segala ketertarikan Anda untuk menelisik infrastruktur antarmuka PARKIN System._
